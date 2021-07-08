@@ -1,0 +1,9 @@
+.banner{
+    height: 50vh;
+    
+    background-image: url("https://www.acta-bristol.com/wp-content/uploads/2012/09/shutterstock_68083159.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    
+}
