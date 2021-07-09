@@ -1,14 +1,15 @@
 .jobcardcontainer{
     display: grid;
     place-items: center;
-    margin: 30px;
+    margin-top: 30px;
 }
 .jobcard{
     background: white;
-    width: 70vw;
+    min-width: 70vw;
     padding: 20px;
 }
 .jobcard > li{
     display: inline;
     padding-right: 20px;
+    
 }

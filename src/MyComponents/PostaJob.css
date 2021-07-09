@@ -6,3 +6,16 @@
     padding: 50px;
     
 }
+
+.jobPostForm > button{
+    width: 100px;
+    
+    margin-right: 20px;
+    margin-top: 50px;
+    display: inline;
+}
+.container{
+    margin-top: 10vh;
+    padding-top: 5vh;
+    background: whitesmoke;
+}

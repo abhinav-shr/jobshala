@@ -39,6 +39,7 @@ function Jobs({db}) {
 
 
     console.log(searchKeywords);
+    console.log(jobdata);
 
     // useEffect(() => {
     //     search ? setSearchKeywords(search.split(',').map((str)=>(str.trim()))) : setSearchKeywords([]);
@@ -61,12 +62,17 @@ function Jobs({db}) {
     
     return (
         <div className="job_search_form_container">
-            <form className='jobsearch' onSubmit={submit} style={{padding:'70px'}}>
+            {/* <form className='jobsearch' onSubmit={submit} style={{padding:'70px'}}>
                 <input type="text" value={search}  onChange={(e)=>setSearch(e.target.value)} />
                 <button type="submit">search</button>
                 <button onClick={cancelSearch}>cancel search</button>
+            </form> */}
+            <form className="d-flex" onSubmit={submit}>
+                <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" value={search}  onChange={(e)=>setSearch(e.target.value)}  />
+                <button className="btn btn-outline-success" type="submit">Search</button>
+                <button className="btn btn-outline-primary" onClick={cancelSearch}>cancel search</button>
             </form>
-            {console.log(jobdata)}
+            {/* {console.log(jobdata)} */}
             {jobdata.map((snapshot)=>{
                 console.log(snapshot.data())
                 return <JobCard key={snapshot.id} data_id={snapshot.id} data = {snapshot.data()} />}
