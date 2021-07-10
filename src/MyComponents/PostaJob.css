@@ -3,19 +3,39 @@
     /* flex-direction: column; */
     justify-content: center;
     /* align-items: center; */
-    padding: 50px;
+    /* padding: 50px; */
     
+    
+}
+.jobPostForm{
+    max-width: 870px;
 }
 
 .jobPostForm > button{
-    width: 100px;
-    
-    margin-right: 20px;
-    margin-top: 50px;
+    max-width: 100px;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 30px;
     display: inline;
+    
 }
-.container{
-    margin-top: 10vh;
-    padding-top: 5vh;
-    background: whitesmoke;
+
+#container{
+    max-width: 870px;
+    margin-top: 5vh;
+    padding-top: 2vw;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 20px;
+    padding-bottom: 20px;
+    background: rgba(221, 221, 221, 0.144);
+    -webkit-box-shadow: 15px 15px 36px 5px rgba(0,0,0,0.37); 
+    box-shadow: 15px 15px 36px 5px rgba(0,0,0,0.37);
+    
+    
+}
+.formheading{
+    max-width: 870px;
+    margin: 20px auto;
+    color: grey;
 }

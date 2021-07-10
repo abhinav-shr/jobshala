@@ -1,63 +1,97 @@
 import './Jobs.css';
 import React, { useState, useEffect } from 'react';
 import JobCard from './JobCard';
-// import firebase from '../Firebase';
 
 
 function Jobs({db}) {
     
-    // const db = firebase.firestore();
     const [search, setSearch] = useState('');
     const [searchKeywords, setSearchKeywords] = useState([]);   
     const [jobdata, setJobdata] = useState([])
 
 
-    let fetchData;
-    
-    
-        console.log(searchKeywords)
-        fetchData = async()=>{
-            const response = db.collection('jobs');
-            
-            if([...searchKeywords].length >= 1){
-                const data = await response.where('Location', 'array-contains-any',searchKeywords).get();
-                console.log('searching',searchKeywords)
-                setJobdata(data.docs);
 
-            }else{
-        
-                const data = await response.get();
-                console.log('nosearch')
-                setJobdata(data.docs);
-            }
+    
+    
+    console.log(searchKeywords)
+    const fetchData = async()=>{
+            const response = db.collection('jobs').orderBy('timestamp','desc');
+            const data = await response.get();
+            setJobdata(data.docs);
+            // console.log(jobdata)
     }
     
 
+
     useEffect(() => {
         fetchData()
-    },[searchKeywords])
+    },[])
+console.log(jobdata)
 
 
-    console.log(searchKeywords);
-    console.log(jobdata);
-
-    // useEffect(() => {
-    //     search ? setSearchKeywords(search.split(',').map((str)=>(str.trim()))) : setSearchKeywords([]);
-        
-    // }, [search])
+  
 
 
     const submit = (e) => {
         e.preventDefault();
-        search ? setSearchKeywords(search.split(',').map((str)=>(str.trim()))) : setSearchKeywords([]);
-        // setSearchKeywords(search.split(',').map((str)=>(str.trim())));
-        setSearch('')
+        search ? setSearchKeywords(search.split(',').map((str)=>(str.trim().toLowerCase()))) : setSearchKeywords([]);
 
     }
-    const cancelSearch = (e) => {
-        e.preventDefault();
-        setSearchKeywords([])
+    // const cancelSearch = (e) => {
+    //     e.preventDefault();
+    //     setSearchKeywords([])
+    // }
+
+
+///// improving the search
+
+const [jobsToShow, setJobsToShow] = useState([])
+console.log(jobdata)
+console.log(jobsToShow)
+
+function findCommonElements(arr1, arr2) {
+    return arr1.some(item => arr2.includes(item))
+}
+
+
+const filterData = () => {
+    if([...searchKeywords].length >= 1){
+        
+        let filterOutput = jobdata.filter((snapshot) => {
+            let keys = [...snapshot.data().Location,...snapshot.data().Keywords,snapshot.data().Title];
+            keys = keys.map((item)=>(item.toLowerCase()))
+            return findCommonElements(keys,searchKeywords)
+            })
+        setJobsToShow(filterOutput)
+        console.log(jobsToShow)
+    
+
+    }else{
+        setJobsToShow([...jobdata])
+        console.log(jobsToShow)
     }
+}
+useEffect(() => {
+    filterData()
+}, [searchKeywords])
+
+
+useEffect(() => {
+    setJobsToShow([...jobdata])
+}, [jobdata])
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     
     return (
@@ -67,14 +101,14 @@ function Jobs({db}) {
                 <button type="submit">search</button>
                 <button onClick={cancelSearch}>cancel search</button>
             </form> */}
-            <form className="d-flex" onSubmit={submit}>
-                <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" value={search}  onChange={(e)=>setSearch(e.target.value)}  />
-                <button className="btn btn-outline-success" type="submit">Search</button>
-                <button className="btn btn-outline-primary" onClick={cancelSearch}>cancel search</button>
+            <form className="d-flex job_search_form" onSubmit={submit}>
+                <input className="form-control me-2" type="search" placeholder="Skills,Designation,Location" aria-label="Search" value={search}  onChange={(e)=>setSearch(e.target.value)} style={{background:'whitesmoke'}} />
+                <button className="btn btn-outline-success" type="submit" >Search</button>
+                {/* <button className="btn btn-outline-primary" onClick={cancelSearch}>cancel search</button> */}
             </form>
             {/* {console.log(jobdata)} */}
-            {jobdata.map((snapshot)=>{
-                console.log(snapshot.data())
+            {jobsToShow.map((snapshot)=>{
+                // console.log(snapshot.data())
                 return <JobCard key={snapshot.id} data_id={snapshot.id} data = {snapshot.data()} />}
             )}
 

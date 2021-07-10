@@ -1,8 +1,27 @@
 import './JobCard.css'
 
+
 import React from 'react'
 
 function JobCard({data, data_id}) {
+
+    function findTime(time){
+        let hours = Math.floor(time/3600000);
+        let minutes = Math.floor(((time/3600000)-hours)*60);
+        // let seconds = Math.floor(((((time/3600000)-hours)*60)-minutes)*60)
+        if(hours){
+            if(hours === 1){
+                return `Updated an Hour ago`
+            }else{
+                return `Updated ${hours} Hours ago`
+            }
+        }else if(minutes>1){
+            return `Updated ${minutes} Minutes ago`
+        }else {
+            return `Updated just now`
+        }
+        
+    }
 
     const truncate = (string, n) => {
         
@@ -14,7 +33,7 @@ function JobCard({data, data_id}) {
 
     
         <div className="jobcard" >
-            <h3>{data?.Title}</h3>
+            <p className='title_jobcard'>{data?.Title}</p>
             <li>{data?.MinExp}-{data?.MaxExp} <span> Years</span> </li>
             <li>{data?.MinCTC}-{data?.MaxCTC}<span> P.A.</span></li>
             
@@ -23,7 +42,7 @@ function JobCard({data, data_id}) {
             <p>{truncate(data?.Description,100)}</p>
             <p>{data?.Vacancies}<span> Vacancies</span></p>
             <p>{data?.Keywords.join(', ')}</p>
-           
+            <p>{findTime(Date.now() - data.timestamp)}</p>
         </div>
     </div>
     )

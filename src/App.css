@@ -1,0 +1,11 @@
+.forbackground{
+    background: url("https://storage.googleapis.com/webdesignledger.pub.network/LaT/edd/2016/02/seamless-background-textures-11.jpg");
+    position: center;
+    z-index: -1;
+    height: 100vh;
+    width: 100vw;
+    opacity: 0.5;
+    position: fixed;
+    top: 0;
+    background-size: cover;
+}

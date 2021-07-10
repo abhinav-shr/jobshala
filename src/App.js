@@ -1,8 +1,8 @@
 import './App.css';
-import Banner from './MyComponents/Banner';
 import PostaJob from './MyComponents/PostaJob';
 import Jobs from './MyComponents/Jobs';
 import firebase from './Firebase';
+
 import {
   BrowserRouter as Router,
   Switch,
@@ -23,10 +23,11 @@ function App() {
 
   return (
     <div>
+      
       <Router>
         <Header />
 
-        {/* <Banner /> */}
+        
         <Switch>
           <Route exact path='/forRecruiter'>
             <PostaJob db={db} />
@@ -38,6 +39,7 @@ function App() {
         
       
       </Router>
+      <div className="forbackground"></div>
     </div>
     
   );

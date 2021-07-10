@@ -1,4 +1,18 @@
 .job_search_form_container{
-    width: 70vw;
+    max-width: 880px;
     margin: 40px auto;
+    padding-bottom: 20px;
+    
+}
+.job_search_form{
+    margin-bottom: 40px;
+    background: rgb(221, 221, 221);
+    padding: 10px;
+    -webkit-box-shadow: 15px 15px 36px 5px rgba(0,0,0,0.37); 
+    box-shadow: 15px 15px 36px 5px rgba(0,0,0,0.37);
+    max-width: 880px;
+}
+.job_search_form > input{
+    height: 50px;
+    
 }

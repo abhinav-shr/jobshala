@@ -1,4 +1,5 @@
 import firebase from 'firebase';
+ 
 const config = {
     apiKey: "AIzaSyAquF0T2y1H21i1hDOZlRoT7iH68VHhYrQ",
     authDomain: "aine-ai2.firebaseapp.com",

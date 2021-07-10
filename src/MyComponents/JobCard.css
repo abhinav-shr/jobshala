@@ -1,15 +1,39 @@
+
 .jobcardcontainer{
-    display: grid;
-    place-items: center;
-    margin-top: 30px;
+    margin: auto auto;
+    margin-top: 20px;
+    border: 2px solid var(--col1);
+    transition: transform 0.5s ease-in-out;
+    max-width: 880px;
+    /* min-width: 100%; */
+    
 }
 .jobcard{
-    background: white;
-    min-width: 70vw;
+    color: rgb(49, 49, 49);
+    background: rgb(221, 221, 221,0.144);
     padding: 20px;
+    max-width: 870px;
+    /* min-width: 100%; */
+
+    -webkit-box-shadow: 15px 15px 36px 5px rgba(0,0,0,0.37); 
+    box-shadow: 15px 15px 36px 5px rgba(0,0,0,0.37);
+}
+.title_jobcard{
+    font-size: 19px;
+    font-weight: 700;
 }
 .jobcard > li{
     display: inline;
     padding-right: 20px;
     
 }
+.jobcardcontainer:hover{
+    transform: scale(1.02);
+    border-color: rgba(194, 194, 194, 0.849);
+    background: rgba(194, 194, 194, 0.849);
+
+}
+.jobcard:hover{
+    background: rgb(207, 207, 207);
+}
+
